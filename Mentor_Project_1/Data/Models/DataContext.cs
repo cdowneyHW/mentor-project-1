@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Mentor_Project_1.Data.Models
 {
+   /// <summary>
+   /// 
+   /// </summary>
     public class DataContext : DbContext
     {
         private readonly IConfiguration _configuration;
