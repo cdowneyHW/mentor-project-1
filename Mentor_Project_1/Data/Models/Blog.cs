@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mentor_Project_1.Data.Models
 {
+    // simple blog class
     public class Blog
     {
         public int BlogID { get; set; }
