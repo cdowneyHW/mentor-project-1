@@ -38,5 +38,19 @@ namespace Mentor_Project_1.Services
 
         }
 
+        public CreateBlogResponse GetBlog(CreateBlogRequest blog)
+        {
+            // finds the blog with the matching url?
+            var tempBlog = _dataContext.Blogs.Find(blog.Url);
+
+            // returns new instance of BlogResponse with properties matching the blog found
+            return new CreateBlogResponse()
+            {
+                Url = tempBlog.Url,
+                BlogID = tempBlog.BlogID
+            };
+
+        }
+
     }
 }

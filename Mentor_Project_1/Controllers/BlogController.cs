@@ -20,5 +20,8 @@ namespace Mentor_Project_1.Controllers
 
         [HttpPost]
         public CreateBlogResponse CreateBlog(CreateBlogRequest request) => _service.CreateBlog(request);
+
+        [HttpGet]
+        public CreateBlogResponse GetBlog(CreateBlogRequest request) => _service.GetBlog(request);
     }
 }
