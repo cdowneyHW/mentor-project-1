@@ -7,6 +7,6 @@ namespace Mentor_Project_1.Data.DTOs
 {
     public class CreateBlogRequest
     {
-        public int Url { get; set; }
+        public string Url { get; set; }
     }
 }
