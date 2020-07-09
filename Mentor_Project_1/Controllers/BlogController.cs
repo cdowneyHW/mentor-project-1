@@ -23,5 +23,14 @@ namespace Mentor_Project_1.Controllers
 
         [HttpGet]
         public CreateBlogResponse GetBlog(CreateBlogRequest request) => _service.GetBlog(request);
+
+        [HttpPut]
+        public CreateBlogResponse EditBlog(CreateBlogRequest oldBlog, CreateBlogRequest newBlog) =>
+            _service.EditBlog(oldBlog, newBlog);
+
+        [HttpDelete]
+        public CreateBlogResponse DeleteBlog(CreateBlogRequest request) => _service.DeleteBlog(request);
+
+        public List<CreateBlogResponse> ListBlogs() => _service.ListBlogs();
     }
 }

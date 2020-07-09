@@ -29,12 +29,7 @@ namespace Mentor_Project_1.Services
             // To the database
             var response = _dataContext.SaveChanges();
 
-            return
-                new CreateBlogResponse()
-                {
-                    Url = newBlog.Url,
-                    BlogID = newBlog.BlogID
-                }; //notice that there is a number in this field now, this is because this Id was created by the sql database and EntityFramework set the value when we saved the record
+            return new CreateBlogResponse(newBlog.BlogID, newBlog.Url);
 
         }
 
@@ -44,13 +39,43 @@ namespace Mentor_Project_1.Services
             var tempBlog = _dataContext.Blogs.Find(blog.Url);
 
             // returns new instance of BlogResponse with properties matching the blog found
-            return new CreateBlogResponse()
-            {
-                Url = tempBlog.Url,
-                BlogID = tempBlog.BlogID
-            };
+            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
 
         }
 
+        public CreateBlogResponse EditBlog(CreateBlogRequest oldBlog, CreateBlogRequest newBlog)
+        {
+            // first need to find the blog to edit
+            var tempBlog = _dataContext.Blogs.Find(oldBlog.Url);
+            tempBlog.Url = newBlog.Url;
+
+            var response = _dataContext.SaveChanges();
+
+            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
+        }
+
+        public CreateBlogResponse DeleteBlog(CreateBlogRequest blog)
+        {
+            var tempBlog = _dataContext.Blogs.Find(blog.Url);
+            _dataContext.Blogs.Remove(tempBlog);
+
+            var response = _dataContext.SaveChanges();
+
+            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
+        }
+
+        public List<CreateBlogResponse> ListBlogs()
+        {
+            //not so sure about this one
+            var blogs = _dataContext.Blogs.AsQueryable().ToList();
+            var tempList = new List<CreateBlogResponse>();
+
+            foreach (var blog in blogs)
+            {
+                tempList.Add(new CreateBlogResponse(blog.BlogID, blog.Url));
+            }
+
+            return tempList;
+        }
     }
 }
