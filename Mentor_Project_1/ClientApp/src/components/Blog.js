@@ -35,6 +35,6 @@ export class Blog extends Component {
                     <button className="btn btn-primary" type="submit" value="Submit" />
                 </div>
             </form>
-        );
+        )
     }
 }
