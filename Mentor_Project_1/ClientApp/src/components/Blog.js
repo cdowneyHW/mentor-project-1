@@ -14,7 +14,8 @@ export class Blog extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        fetch('http://localhost:32545/api/blog', {
+
+        fetch('https://localhost:44386/api/blog/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
