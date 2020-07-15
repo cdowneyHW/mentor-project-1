@@ -1,3 +1,5 @@
+using Mentor_Project_1.Data.Models;
+using Mentor_Project_1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +30,9 @@ namespace Mentor_Project_1
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddDbContext<DataContext>();
+            services.AddScoped<BlogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

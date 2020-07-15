@@ -16,10 +16,16 @@ namespace Mentor_Project_1.Controllers
     {
         private readonly BlogService _service;
 
-        BlogController(BlogService service) => _service = service;
+        public BlogController(BlogService service)
+        {
+            _service = service;
+        }
 
         [HttpPost]
-        public CreateBlogResponse CreateBlog(CreateBlogRequest request) => _service.CreateBlog(request);
+        public CreateBlogResponse CreateBlog(CreateBlogRequest request)
+        {
+            return _service.CreateBlog(request);
+        }
 
         [HttpGet]
         public BlogResponse GetBlog(int ID) => _service.GetBlog(ID);
