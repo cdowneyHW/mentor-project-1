@@ -33,48 +33,49 @@ namespace Mentor_Project_1.Services
 
         }
 
-        public CreateBlogResponse GetBlog(CreateBlogRequest blog)
+        public BlogResponse GetBlog(int ID)
         {
             // finds the blog with the matching url?
-            var tempBlog = _dataContext.Blogs.Find(blog.Url);
+            var tempBlog = _dataContext.Blogs.Find(ID);
 
             // returns new instance of BlogResponse with properties matching the blog found
-            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
 
         }
 
-        public CreateBlogResponse EditBlog(CreateBlogRequest oldBlog, CreateBlogRequest newBlog)
+        public BlogResponse EditBlog(EditBlogRequest blog)
         {
             // first need to find the blog to edit
-            var tempBlog = _dataContext.Blogs.Find(oldBlog.Url);
-            tempBlog.Url = newBlog.Url;
+            var tempBlog = _dataContext.Blogs.Find(blog.ID);
+            tempBlog.Url = blog.ModBlog.Url;
 
             var response = _dataContext.SaveChanges();
 
-            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
         }
 
-        public CreateBlogResponse DeleteBlog(CreateBlogRequest blog)
+        public BlogResponse DeleteBlog(int ID)
         {
-            var tempBlog = _dataContext.Blogs.Find(blog.Url);
+            var tempBlog = _dataContext.Blogs.Find(ID);
             _dataContext.Blogs.Remove(tempBlog);
 
             var response = _dataContext.SaveChanges();
 
-            return new CreateBlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
         }
 
-        public List<CreateBlogResponse> ListBlogs()
+        public List<BlogResponse> ListBlogs()
         {
-            //not so sure about this one
+            // not so sure about this one
             var blogs = _dataContext.Blogs.AsQueryable().ToList();
-            var tempList = new List<CreateBlogResponse>();
+            var tempList = new List<BlogResponse>();
 
             foreach (var blog in blogs)
             {
-                tempList.Add(new CreateBlogResponse(blog.BlogID, blog.Url));
+                tempList.Add(new BlogResponse(blog.BlogID, blog.Url));
             }
 
+            // should I return array or list?
             return tempList;
         }
     }

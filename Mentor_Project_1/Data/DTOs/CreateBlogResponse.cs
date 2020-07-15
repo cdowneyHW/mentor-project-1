@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 
 namespace Mentor_Project_1.Data.DTOs
 {
-    public class CreateBlogResponse
+    public class CreateBlogResponse : BlogResponse
     {
-        public CreateBlogResponse(int blogID, string url) =>
-            (this.BlogID, this.Url) = (blogID, url);
+        public CreateBlogResponse(int blogID, string url) : base(blogID, url) { }
+        public CreateBlogResponse() : base() { }
 
-        public CreateBlogResponse() { }
-
-        public int BlogID { get; set; }
-        public string Url { get; set; }
     }
 }
