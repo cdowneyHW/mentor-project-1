@@ -1,9 +1,10 @@
 ﻿import React, { Component } from 'react';
+import { CreateBlog } from './CreateBlog';
 
 export class Blog extends Component {
     constructor(props) {
         super(props);
-        this.state = { urlValue: '' };
+        this.state = { urlValue: '', output: 'Default' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -14,8 +15,9 @@ export class Blog extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-
-        fetch('https://localhost:44386/api/blog/', {
+        const response = <CreateBlog url={this.state.urlValue} />;
+        /*
+        const response = fetch('https://localhost:44386/api/blog/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -24,16 +26,26 @@ export class Blog extends Component {
             body: JSON.stringify({
                 url: this.state.urlValue
             })
-        })
-    }
+        });
+        return response.JSON;
+       */
+      this.setState({output: response.JSON.url});
+    };
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <h1>Blog</h1>
+                    <p1>Create Blog here:/n</p1>
                     <input type="text" value={this.state.urlValue} onChange={this.handleChange} />
-                    <button className="btn btn-primary" type="submit" value="Submit" />
+                    <button className="btn btn-primary" type="submit" value="Submit" label="Submit" />
+                </div>
+                <div>
+                    <p1>
+                        Output:
+                        {this.state.output}
+                    </p1>
                 </div>
             </form>
         )
