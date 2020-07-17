@@ -4,7 +4,7 @@ import { CreateBlog } from './CreateBlog';
 export class Blog extends Component {
     constructor(props) {
         super(props);
-        this.state = { urlValue: '', output: 'Default' };
+        this.state = { urlValue: '', output: 'URL should be here' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,7 +29,7 @@ export class Blog extends Component {
         });
         return response.JSON;
        */
-      this.setState({output: response.JSON.url});
+      this.setState({output: response});
     };
 
     render() {
