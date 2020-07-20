@@ -39,7 +39,7 @@ namespace Mentor_Project_1.Services
             var tempBlog = _dataContext.Blogs.Find(ID);
 
             // returns new instance of BlogResponse with properties matching the blog found
-            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return new BlogResponse(tempBlog);
 
         }
 
@@ -51,24 +51,25 @@ namespace Mentor_Project_1.Services
 
             var response = _dataContext.SaveChanges();
 
-            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return new BlogResponse(tempBlog);
         }
 
         public BlogResponse DeleteBlog(int ID)
         {
             var tempBlog = _dataContext.Blogs.Find(ID);
+            var tempBlogResponse = new BlogResponse(tempBlog);
             _dataContext.Blogs.Remove(tempBlog);
 
             var response = _dataContext.SaveChanges();
 
-            return new BlogResponse(tempBlog.BlogID, tempBlog.Url);
+            return tempBlogResponse;
         }
 
         public List<BlogResponse> ListBlogs()
         {
             // not so sure about this one
             var blogs = _dataContext.Blogs.AsQueryable().ToList();
-            var tempList = new List<BlogResponse>();
+            var tempList = new List<BlogResponse>(blogs.Count);
 
             foreach (var blog in blogs)
             {
