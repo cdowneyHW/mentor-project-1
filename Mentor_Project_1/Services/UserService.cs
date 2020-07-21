@@ -33,7 +33,7 @@ namespace Mentor_Project_1.Services
 
             tempUser.FirstName = request.FirstName;
             tempUser.LastName = request.LastName;
-            
+
             var response = _dataContext.SaveChanges();
 
             return new UserResponse(tempUser);
