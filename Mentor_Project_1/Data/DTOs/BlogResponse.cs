@@ -10,22 +10,9 @@ namespace Mentor_Project_1.Data.DTOs
     {
         public BlogResponse() { }
 
-        public BlogResponse(Blog blog)
-        {
-            (BlogID, Url) = (blog.BlogID, blog.Url);
-            GeneratePostResponses(blog.Posts);
-        }
+        public BlogResponse(Blog blog) => (BlogID, Url) = (blog.BlogID, blog.Url);
 
         public int BlogID { get; set; }
         public string Url { get; set; }
-        public List<PostResponse> Posts { get; } = new List<PostResponse>();
-
-        private void GeneratePostResponses(List<Post> realPosts)
-        {   // this generates a list of Post Responses that are safe for the delete function
-            foreach (var post in realPosts)
-            {
-                Posts.Add(new PostResponse(post));
-            }
-        }
     }
 }

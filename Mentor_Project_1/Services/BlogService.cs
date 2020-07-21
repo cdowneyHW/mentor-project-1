@@ -40,11 +40,11 @@ namespace Mentor_Project_1.Services
 
         }
 
-        public BlogResponse EditBlog(EditBlogRequest blog)
+        public BlogResponse EditBlog(EditBlogRequest request)
         {
             // first need to find the blog to edit
-            var tempBlog = _dataContext.Blogs.Find(blog.ID);
-            tempBlog.Url = blog.ModBlog.Url;
+            var tempBlog = _dataContext.Blogs.Find(request.BlogID);
+            tempBlog.Url = request.Url;
 
             var response = _dataContext.SaveChanges();
 
