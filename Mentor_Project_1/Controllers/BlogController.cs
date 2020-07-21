@@ -22,7 +22,7 @@ namespace Mentor_Project_1.Controllers
         }
 
         [HttpPost]
-        public CreateBlogResponse CreateBlog(CreateBlogRequest request)
+        public BlogResponse CreateBlog(CreateBlogRequest request)
         {
             return _service.CreateBlog(request);
         }
