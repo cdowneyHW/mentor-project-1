@@ -28,7 +28,7 @@ namespace Mentor_Project_1.Controllers
         }
 
         [HttpGet]
-        public BlogResponse GetBlog(int ID) => _service.GetBlog(ID);
+        public GetBlogResponse GetBlog(int ID) => _service.GetBlog(ID);
 
         [HttpPut]
         public BlogResponse EditBlog(EditBlogRequest request) =>

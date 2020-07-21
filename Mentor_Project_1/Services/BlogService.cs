@@ -30,13 +30,14 @@ namespace Mentor_Project_1.Services
 
         }
 
-        public BlogResponse GetBlog(int ID)
+        public GetBlogResponse GetBlog(int ID)
         {
+            // includes a list of all posts in response
             // finds the blog with the matching url?
             var tempBlog = _dataContext.Blogs.Find(ID);
 
             // returns new instance of BlogResponse with properties matching the blog found
-            return new BlogResponse(tempBlog);
+            return new GetBlogResponse(tempBlog);
 
         }
 
