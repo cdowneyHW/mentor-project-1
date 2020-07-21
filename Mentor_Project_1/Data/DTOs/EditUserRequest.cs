@@ -7,6 +7,6 @@ namespace Mentor_Project_1.Data.DTOs
 {
     public class EditUserRequest : UserRequest
     {
-        public int UserID;
+        public int UserID { get; set; }
     }
 }

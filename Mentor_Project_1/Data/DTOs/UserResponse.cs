@@ -10,8 +10,8 @@ namespace Mentor_Project_1.Data.DTOs
     {
         public UserResponse() {}
         public UserResponse(User user) => (UserID, FirstName, LastName) = (user.UserID, user.FirstName, user.LastName);
-        public int UserID;
-        public string FirstName;
-        public string LastName;
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
