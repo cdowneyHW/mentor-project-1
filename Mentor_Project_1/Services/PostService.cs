@@ -16,6 +16,7 @@ namespace Mentor_Project_1.Services
         {
             var newPost = new Post(request);
             newPost.Blog = _dataContext.Blogs.Find(newPost.BlogID);
+            newPost.Blog.Posts.Add(newPost);
             var response = _dataContext.SaveChanges();
 
             return new PostResponse(newPost);
@@ -30,7 +31,12 @@ namespace Mentor_Project_1.Services
         public PostResponse EditPost(EditPostRequest request)
         {
             var post = _dataContext.Posts.Find(request.PostID);
-            if (post.BlogID != request.BlogID) post.Blog = _dataContext.Blogs.Find(request.BlogID); // updates source blog if changed
+            if (post.BlogID != request.BlogID)
+            {   // updates source blog if changed
+                post.Blog.Posts.Remove(post);
+                post.Blog = _dataContext.Blogs.Find(request.BlogID);
+                post.Blog.Posts.Add(post);
+            }
             (post.Title, post.Content, post.BlogID) = (request.Title, request.Content, request.PostID);
             var response = _dataContext.SaveChanges();
 
@@ -41,7 +47,7 @@ namespace Mentor_Project_1.Services
         {
             var TempPost = _dataContext.Posts.Find(PostID);
             var TempResponse = new PostResponse(TempPost);
-
+            _dataContext.Blogs.Find(TempPost.BlogID).Posts.Remove(TempPost);
             _dataContext.Remove(TempPost);
             var response = _dataContext.SaveChanges();
             return TempResponse;
