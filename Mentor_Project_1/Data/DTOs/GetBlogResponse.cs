@@ -10,9 +10,9 @@ namespace Mentor_Project_1.Data.DTOs
     {
         public GetBlogResponse() {}
 
-        public GetBlogReponse(Blog blog) : base(blog)
+        public GetBlogResponse(Blog blog) : base(blog)
         {
-            GeneratePostReponses(blog.Posts);
+            GeneratePostResponses(blog.Posts);
         }
         public List<PostResponse> Posts { get; } = new List<PostResponse>();
 
