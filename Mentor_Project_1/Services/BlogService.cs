@@ -14,14 +14,11 @@ namespace Mentor_Project_1.Services
 
         public BlogService(DataContext dataContext) => _dataContext = dataContext;
 
-        public CreateBlogResponse CreateBlog(CreateBlogRequest blog)
+        public BlogResponse CreateBlog(CreateBlogRequest blog)
         {
             // the new object we are going to save
-            var newBlog = new Blog()
-            {
-                Url = blog.Url
-            };
-
+            var newBlog = new Blog(blog);
+            
             // This tells EntityFramework to add the new blog to the in memory version of our datacontext
             _dataContext.Blogs.Add(newBlog);
 
@@ -29,7 +26,7 @@ namespace Mentor_Project_1.Services
             // To the database
             var response = _dataContext.SaveChanges();
 
-            return new CreateBlogResponse(newBlog.BlogID, newBlog.Url);
+            return new BlogResponse(newBlog);
 
         }
 
@@ -56,8 +53,13 @@ namespace Mentor_Project_1.Services
 
         public BlogResponse DeleteBlog(int ID)
         {
+            // deletes blog and all posts in blog
             var tempBlog = _dataContext.Blogs.Find(ID);
             var tempBlogResponse = new BlogResponse(tempBlog);
+            foreach (var post in tempBlog.Posts)
+            {   // deletes every post in blog so that there aren't unassigned posts
+                _dataContext.Posts.Remove(post);
+            }
             _dataContext.Blogs.Remove(tempBlog);
 
             var response = _dataContext.SaveChanges();
@@ -73,7 +75,7 @@ namespace Mentor_Project_1.Services
 
             foreach (var blog in blogs)
             {
-                tempList.Add(new BlogResponse(blog.BlogID, blog.Url));
+                tempList.Add(new BlogResponse(blog));
             }
 
             // should I return array or list?
