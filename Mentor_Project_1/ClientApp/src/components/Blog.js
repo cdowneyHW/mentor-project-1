@@ -37,7 +37,7 @@ export class Blog extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <h1>Blog</h1>
-                    <p1>Create Blog here:/n</p1>
+                    <p1>Create Blog here:\n</p1>
                     <input type="text" value={this.state.urlValue} onChange={this.handleChange} />
                     <button className="btn btn-primary" type="submit" value="Submit" label="Submit" />
                 </div>

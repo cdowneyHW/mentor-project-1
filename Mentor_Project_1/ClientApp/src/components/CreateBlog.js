@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export const CreateBlog = async ({URL}) => {
+export const CreateBlog = async ({url}) => {
     const response = await fetch('https://localhost:44386/api/blog/', {
       method: "POST",
       mode: "cors",
@@ -8,7 +8,7 @@ export const CreateBlog = async ({URL}) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({url: URL})
+      body: JSON.stringify({url: url})
     });
-    return response.data;
+    return response.json().data;
   };
