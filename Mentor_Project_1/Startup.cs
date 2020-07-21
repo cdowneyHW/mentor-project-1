@@ -34,6 +34,7 @@ namespace Mentor_Project_1
             services.AddDbContext<DataContext>();
             services.AddScoped<BlogService>();
             services.AddScoped<UserService>();
+            services.AddScoped<PostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
