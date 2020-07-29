@@ -20,7 +20,16 @@ export class User extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const response = <CreateUser fName={this.state.fName} lName={this.state.lName} />;
+        //const response = <CreateUser fName={this.state.fName} lName={this.state.lName} />;
+        const response = fetch('https://localhost:44386/api/user/', {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({firstName: this.state.fName, lastName: this.state.lName})
+          });
     }
 
     render() {
@@ -28,7 +37,7 @@ export class User extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <h1>User</h1>
-                    <p1>Create User Here:\n</p1>
+                    <p>Create User Here:</p>
                     <input type="text" value={this.state.fName} onChange={this.handleFChange} />
                     <input type="text" value={this.state.lName} onChange={this.handleLChange} />
                     <button className="btn btn-primary" type="submit" value="Submit" label="Submit" />

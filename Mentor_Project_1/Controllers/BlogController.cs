@@ -28,6 +28,7 @@ namespace Mentor_Project_1.Controllers
         }
 
         [HttpGet]
+        [Route("/{ID}")]
         public GetBlogResponse GetBlog(int ID) => _service.GetBlog(ID);
 
         [HttpPut]

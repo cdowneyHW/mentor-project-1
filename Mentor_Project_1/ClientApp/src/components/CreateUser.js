@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 export const CreateUser = async ({fname, lname}) => {
     const response = await fetch('https://localhost:44386/api/user/', {
       method: "POST",

@@ -15,8 +15,8 @@ export class Blog extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const response = <CreateBlog url={this.state.urlValue} />;
-        /*
+        //<CreateBlog url={this.state.urlValue} />;
+        
         const response = fetch('https://localhost:44386/api/blog/', {
             method: 'POST',
             headers: {
@@ -27,9 +27,9 @@ export class Blog extends Component {
                 url: this.state.urlValue
             })
         });
-        return response.JSON;
-       */
-      this.setState({output: response});
+        //return response.json().data;
+       
+      //this.setState({output: response});
     };
 
     render() {
@@ -37,15 +37,15 @@ export class Blog extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <h1>Blog</h1>
-                    <p1>Create Blog here:\n</p1>
+                    <p>Create Blog here:</p>
                     <input type="text" value={this.state.urlValue} onChange={this.handleChange} />
                     <button className="btn btn-primary" type="submit" value="Submit" label="Submit" />
                 </div>
                 <div>
-                    <p1>
+                    <p>
                         Output:
                         {this.state.output}
-                    </p1>
+                    </p>
                 </div>
             </form>
         )
