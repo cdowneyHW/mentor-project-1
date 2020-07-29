@@ -1,12 +1,15 @@
 using Mentor_Project_1.Data.Models;
 using Mentor_Project_1.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Mentor_Project_1
 {
@@ -35,6 +38,16 @@ namespace Mentor_Project_1
             services.AddScoped<BlogService>();
             services.AddScoped<UserService>();
             services.AddScoped<PostService>();
+
+            /*
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+            */
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

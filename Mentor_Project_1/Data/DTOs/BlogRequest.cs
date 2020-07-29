@@ -9,9 +9,9 @@ namespace Mentor_Project_1.Data.DTOs
     public class BlogRequest
     {
         public BlogRequest() { }
-        public BlogRequest(string url) => Url = url;
-        public BlogRequest(BlogRequest copy) => Url = copy.Url;
+        public BlogRequest(string title, string description) => (Title, Description) = (title, description);
 
-        public string Url { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
     }
 }
