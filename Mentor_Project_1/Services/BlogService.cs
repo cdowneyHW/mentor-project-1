@@ -45,7 +45,7 @@ namespace Mentor_Project_1.Services
         {
             // first need to find the blog to edit
             var tempBlog = _dataContext.Blogs.Find(request.BlogID);
-            tempBlog.Url = request.Url;
+            (tempBlog.Title, tempBlog.Description) = (request.Title, request.Description);
 
             var response = _dataContext.SaveChanges();
 
