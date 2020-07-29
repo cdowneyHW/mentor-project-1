@@ -4,13 +4,13 @@ import { CreateBlog } from './CreateBlog';
 export class Blog extends Component {
     constructor(props) {
         super(props);
-        this.state = { urlValue: '', output: 'URL should be here' };
+        this.state = { title: '', output: 'URL should be here' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = event => {
-        this.setState({ urlValue: event.target.value })
+        this.setState({ title: event.target.value })
     }
 
     handleSubmit = event => {
@@ -24,7 +24,7 @@ export class Blog extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                url: this.state.urlValue
+                title: this.state.title
             })
         });
         //return response.json().data;
@@ -38,7 +38,7 @@ export class Blog extends Component {
                 <div>
                     <h1>Blog</h1>
                     <p>Create Blog here:</p>
-                    <input type="text" value={this.state.urlValue} onChange={this.handleChange} />
+                    <input type="text" value={this.state.title} onChange={this.handleChange} />
                     <button className="btn btn-primary" type="submit" value="Submit" label="Submit" />
                 </div>
                 <div>
